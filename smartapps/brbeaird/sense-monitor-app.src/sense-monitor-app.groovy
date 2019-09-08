@@ -16,7 +16,6 @@
  *
  */
 import java.text.SimpleDateFormat
-include 'asynchttp_v1'
 
 String appVersion() { return "0.3.4" }
 String appModified() { return "2019-04-04"}
@@ -415,7 +414,7 @@ def lanEventHandler(evt) {
 								log.debug "Creating NEW Sense Energy Device: " + fullName
 								childDevice = addChildDevice("brbeaird", "Sense Energy Device", dni, null, childDeviceAttrib)
 							}
-						} catch(physicalgraph.app.exception.UnknownDeviceTypeException ex) {
+						} catch(com.hubitat.app.exception.UnknownDeviceTypeException ex) {
 							log.error "AddDevice Error! ", ex
 						}
 					} else {
@@ -465,12 +464,12 @@ private senseServiceUpdate() {
 	String ip = state?.nodeServiceInfo?.ip
 	String port = state?.nodeServiceInfo?.port
 	String host = ip && port ? "${ip}:${port}" : null
-	String smartThingsHubIp = settings?.stHub?.getLocalIP()
+	String smartThingsHubIp = location.hubs[0].getDataValue("localIP")
 	if(!host) { return }
 
 	logger("trace", "senseServiceUpdate host: ${host}")
 	try {
-		def hubAction = new physicalgraph.device.HubAction(
+		def hubAction = new hubitat.device.HubAction(
 			method: "POST",
 			headers: [
 				"HOST": host,
@@ -863,7 +862,7 @@ String getNotifSchedDesc() {
 String getServiceConfDesc() {
 	String str = ""
 	str += (settings?.stHub) ? "${str != "" ? "\n" : ""}Hub Info:" : ""
-	str += (settings?.stHub) ? "${str != "" ? "\n" : ""} • IP: ${settings?.stHub?.getLocalIP()}" : ""
+	str += (settings?.stHub) ? "${str != "" ? "\n" : ""} • IP: ${location.hubs[0].getDataValue("localIP")}" : ""
 	str += (settings?.websocketPollingInterval || settings?.refreshInterval) ? "\n\nServer Push Settings:" : ""
 	str += (settings?.websocketPollingInterval) ? "${str != "" ? "\n" : ""} • Websocket Poll Interval: (${settings?.websocketPollingInterval}sec)" : ""
 	str += (settings?.refreshInterval) ? "${str != "" ? "\n" : ""} • Monitor Refresh Interval: (${settings?.refreshInterval}sec)" : ""
