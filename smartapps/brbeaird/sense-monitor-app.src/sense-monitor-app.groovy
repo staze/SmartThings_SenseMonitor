@@ -1,7 +1,7 @@
 /**
- *	Sense Monitor SmartApp
+ *	Sense Monitor SmartApp, Forked for Hubitat
  *
- *	Author: Brian Beaird and Anthony Santilli
+ *	Author: Brian Beaird and Anthony Santilli, Forked for Hubitat by Staze
  *
  *  Copyright 2019 Brian Beaird and Anthony Santilli
  *
@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat
 String appVersion() { return "0.3.4" }
 String appModified() { return "2019-04-04"}
 String appAuthor() { return "Anthony Santilli & Brian Beaird" }
-String gitBranch() { return "brbeaird" }
+String gitBranch() { return "staze" }
 String getAppImg(imgName) 	{ return "https://raw.githubusercontent.com/${gitBranch()}/SmartThings_SenseMonitor/master/resources/icons/$imgName" }
 Map minVersions() { //These define the minimum versions of code this app will work with.
 	return [
@@ -32,9 +32,9 @@ Map minVersions() { //These define the minimum versions of code this app will wo
 
 definition(
 	name: "Sense Monitor App",
-	namespace: "brbeaird",
-	author: "Anthony Santilli & Brian Beaird",
-	description: "Connects SmartThings with Sense",
+	namespace: "staze",
+	author: "Anthony Santilli & Brian Beaird & Forked for Hubitat by Staze",
+	description: "Connects Hubitat with Sense",
 	category: "My Apps",
 	iconUrl: "https://raw.githubusercontent.com/${gitBranch()}/SmartThings_SenseMonitor/master/resources/icons/sense.1x.png",
 	iconX2Url: "https://raw.githubusercontent.com/${gitBranch()}/SmartThings_SenseMonitor/master/resources/icons/sense.2x.png",
