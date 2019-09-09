@@ -303,7 +303,7 @@ private modCodeVerMap(key, val) {
 }
 
 private reInitDevices() {
-	getChildDevices(true)?.each { cd-> cd?.initialize() }
+    getAllChildDevices()?.each { cd-&gt; cd?.initialize() }
 }
 
 def lanEventHandler(evt) {
